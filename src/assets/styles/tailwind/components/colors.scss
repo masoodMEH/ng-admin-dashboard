@@ -1,0 +1,88 @@
+/* Primary colors */
+.primary {
+  @apply bg-[#100b7e] text-white;
+}
+.primary-hover:hover {
+  @apply bg-[#0d0860];
+}
+.primary-text {
+  @apply text-[#100b7e];
+}
+
+/* Secondary colors */
+.secondary {
+  @apply bg-[#9333ea] text-white;
+}
+.secondary-hover:hover {
+  @apply bg-[#7722c8];
+}
+.secondary-text {
+  @apply text-[#9333ea];
+}
+
+/* Accent colors */
+.accent {
+  @apply bg-[#f59e0b] text-white;
+}
+.accent-hover:hover {
+  @apply bg-[#d68800];
+}
+.accent-text {
+  @apply text-[#f59e0b];
+}
+
+/* Neutral colors */
+.neutral {
+  @apply bg-[#111827] text-white;
+}
+.neutral-hover:hover {
+  @apply bg-[#0d111d];
+}
+.neutral-text {
+  @apply text-[#111827];
+}
+
+/* Base colors */
+.base-100 {
+  @apply bg-[#f3f4f6] text-[#111827];
+}
+
+/* Info, Success, Warning, Error */
+.info {
+  @apply bg-[#0ea5e9] text-white;
+}
+.success {
+  @apply bg-[#22c55e] text-white;
+}
+.warning {
+  @apply bg-[#eab308] text-white;
+}
+.error {
+  @apply bg-[#ef4444] text-white;
+}
+
+/* Buttons example */
+.btn-primary {
+  @apply px-4 py-2 rounded primary;
+}
+.btn-secondary {
+  @apply px-4 py-2 rounded secondary;
+}
+.btn-accent {
+  @apply px-4 py-2 rounded accent;
+}
+.btn-neutral {
+  @apply px-4 py-2 rounded neutral;
+}
+.btn-info {
+  @apply px-4 py-2 rounded info;
+}
+.btn-success {
+  @apply px-4 py-2 rounded success;
+}
+.btn-warning {
+  @apply px-4 py-2 rounded warning;
+}
+.btn-error {
+  @apply px-4 py-2 rounded error;
+}

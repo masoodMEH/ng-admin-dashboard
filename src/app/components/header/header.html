@@ -1,0 +1,59 @@
+<header
+  class="flex items-center justify-between bg-blue-500 px-3 sm:px-4 py-2 text-white rounded-lg w-full"
+>
+  <!-- Sidebar toggle + Title -->
+  <div class="flex items-center gap-2">
+    <button
+      aria-label="menu button"
+      type="button"
+      (click)="sidebarButtonClick()"
+      class="p-1.5 sm:p-2 hover:bg-blue-600 rounded flex items-center"
+    >
+      <ng-icon name="matMenuOutline" class="!w-5 !h-5 sm:!w-6 sm:!h-6"></ng-icon>
+    </button>
+    <span class="text-sm sm:text-base font-medium">داشبورد ادمین</span>
+  </div>
+
+  <!-- User Avatar Dropdown -->
+  <div class="relative flex items-center">
+    <button
+      type="button"
+      (click)="toggleMenu()"
+      class="flex items-center justify-between gap-2 sm:gap-8 w-38 sm:w-50 !bg-blue-600 hover:!bg-blue-700 px-2 sm:px-3 py-3 sm:py-3 rounded-lg"
+    >
+      <p-avatar
+        image="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
+        shape="circle"
+        class="ring-2 ring-white !w-6 !h-6 sm:!w-8 sm:!h-8"
+      ></p-avatar>
+      <span class="text-xs sm:text-sm font-medium text-white">مسعود مهره کش</span>
+    </button>
+
+    <!-- Custom Dropdown -->
+    <ul
+      *ngIf="isMenuOpen"
+      class="absolute start-0 mt-40 w-41 sm:w-50 bg-white rounded-lg shadow-md p-2 text-gray-800 text-sm z-50"
+    >
+      <li>
+        <a
+          routerLink="/settings"
+          class="flex justify-between items-center p-2 hover:bg-gray-100 rounded"
+          (click)="toggleMenu()"
+        >
+          <span>تنظیمات</span>
+          <ng-icon name="matSettingsOutline" class="!w-4 !h-4" />
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="/login"
+          class="flex justify-between items-center p-2 hover:bg-gray-100 rounded"
+          (click)="toggleMenu()"
+        >
+          <span>خروج</span>
+          <ng-icon name="matLogOutOutline" class="!w-4 !h-4" />
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>

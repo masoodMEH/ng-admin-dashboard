@@ -1,0 +1,115 @@
+/* ==========================
+   Base styles for .btn
+========================== */
+.btn {
+  @apply inline-flex items-center justify-center font-medium rounded-md transition-all duration-200 select-none;
+
+  /* Default size (md) */
+  @apply px-4 py-2 text-sm;
+
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed pointer-events-none;
+  }
+  &:active:not(:disabled) {
+    @apply scale-95;
+  }
+}
+
+/* ==========================
+   Button Colors
+========================== */
+.btn-primary {
+  @apply bg-[#100b7e] text-white;
+  &:hover:not(:disabled) {
+    @apply bg-[#0d0860];
+  }
+}
+.btn-secondary {
+  @apply bg-[#9333ea] text-white;
+  &:hover:not(:disabled) {
+    @apply bg-[#7722c8];
+  }
+}
+.btn-accent {
+  @apply bg-[#f59e0b] text-white;
+  &:hover:not(:disabled) {
+    @apply bg-[#d68800];
+  }
+}
+.btn-info {
+  @apply bg-[#0ea5e9] text-white;
+  &:hover:not(:disabled) {
+    @apply bg-[#0284c7];
+  }
+}
+.btn-success {
+  @apply bg-[#22c55e] text-white;
+  &:hover:not(:disabled) {
+    @apply bg-[#16a34a];
+  }
+}
+.btn-warning {
+  @apply bg-[#eab308] text-white;
+  &:hover:not(:disabled) {
+    @apply bg-[#ca8a04];
+  }
+}
+.btn-error {
+  @apply bg-[#ef4444] text-white;
+  &:hover:not(:disabled) {
+    @apply bg-[#dc2626];
+  }
+}
+.btn-neutral {
+  @apply bg-[#111827] text-white;
+  &:hover:not(:disabled) {
+    @apply bg-[#0d111d];
+  }
+}
+
+/* ==========================
+   Variants
+========================== */
+.btn-ghost {
+  @apply bg-transparent text-gray-700 hover:bg-gray-100;
+}
+.btn-outline {
+  @apply border border-gray-400 text-gray-700 bg-transparent;
+  &:hover:not(:disabled) {
+    @apply bg-gray-100;
+  }
+}
+.btn-link {
+  @apply text-blue-600 underline hover:text-blue-800 bg-transparent px-0;
+}
+
+/* ==========================
+   Sizes
+========================== */
+.btn-sm {
+  @apply px-2 py-1 text-xs;
+}
+.btn-md {
+  @apply px-4 py-2 text-sm;
+}
+.btn-lg {
+  @apply px-6 py-3 text-base;
+}
+.btn-wide {
+  @apply px-8 py-3 w-full;
+}
+.btn-block {
+  @apply block w-full;
+}
+
+/* ==========================
+   Loading state
+========================== */
+.btn.loading {
+  @apply relative text-transparent pointer-events-none;
+
+  &::after {
+    content: '';
+    @apply absolute inset-0 m-auto border-2 border-t-transparent border-white rounded-full w-4 h-4 animate-spin;
+  }
+}
