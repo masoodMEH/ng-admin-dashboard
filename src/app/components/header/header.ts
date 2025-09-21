@@ -9,7 +9,6 @@ import { MenubarModule } from 'primeng/menubar';
 import { RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { matLogOutOutline, matMenuOutline } from '@ng-icons/material-icons/outline';
-import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +21,6 @@ import { Button } from 'primeng/button';
     InputTextModule,
     CommonModule,
     NgIcon,
-    Button,
     RouterLink,
   ],
   templateUrl: './header.html',

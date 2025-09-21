@@ -7,7 +7,7 @@ import { matLockOutline } from '@ng-icons/material-icons/outline';
 
 @Component({
   selector: 'app-home',
-  imports: [NgIcon, CardModule, ButtonModule],
+  imports: [CardModule, ButtonModule],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   viewProviders: [provideIcons({ matLockOutline })],
