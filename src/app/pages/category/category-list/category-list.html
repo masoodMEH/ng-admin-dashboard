@@ -1,0 +1,18 @@
+<p-card>
+  <ng-template pTemplate="title">
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+      <h2 class="m-0 text-lg sm:text-xl font-semibold">لیست دسته‌بندی‌ها</h2>
+      <button
+        pButton
+        type="button"
+        label="ایجاد دسته‌بندی"
+        aria-label="ایجاد دسته‌بندی"
+        icon="pi pi-plus"
+        class="p-button-raised !bg-primary !border-0 text-sm sm:text-base px-3 sm:px-4 py-2"
+        [routerLink]="'/admin/categories/add'"
+      ></button>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="content"> اینجا محتوای کارت قرار می‌گیرد </ng-template>
+</p-card>

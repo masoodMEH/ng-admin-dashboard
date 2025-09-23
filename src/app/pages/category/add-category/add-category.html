@@ -1,0 +1,40 @@
+<p-card>
+  <ng-template pTemplate="title">
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+      <h2 class="m-0 text-lg sm:text-xl font-semibold">ایجاد دسته بندی جدید</h2>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <form class="bg-white py-4 px-2 rounded-xl w-full max-w-full space-y-6">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">نام دسته بندی</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="نام خود را وارد کنید"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+        />
+      </div>
+
+      <div>
+        <label for="UrlHandle" class="block text-sm font-medium text-gray-700">نوع دسته بندی</label>
+        <input
+          type="text"
+          id="UrlHandle"
+          name="UrlHandle"
+          placeholder="نوع دسته بندی"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+      >
+        ذخیره
+      </button>
+    </form>
+  </ng-template>
+</p-card>

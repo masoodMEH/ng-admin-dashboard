@@ -2,6 +2,7 @@
 @config '../tailwind.config.js';
 
 @import 'tailwindcss';
+@plugin "@tailwindcss/forms";
 @import 'primeicons/primeicons.css';
 @import './assets/styles/tailwind/tailwind.scss';
 
