@@ -1,9 +1,7 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-
 import {
   matAddOutline,
   matAdminPanelSettingsOutline,
@@ -12,25 +10,17 @@ import {
   matHomeOutline,
   matSettingsOutline,
 } from '@ng-icons/material-icons/outline';
-
-import { ButtonModule } from 'primeng/button';
-import { Drawer, DrawerModule } from 'primeng/drawer';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 import { Header } from './components/header/header';
-import { SIDEBAR_ITEMS, SidebarItem } from './types/sidebar-items';
+import { Sidebar } from './components/sidebar/sidebar';
+import { SIDEBAR_ITEMS } from './types/sidebar-items';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrls: ['./app.scss'],
-  imports: [CommonModule, DrawerModule, ButtonModule, NgIcon, RouterOutlet, RouterLink, Header],
-  animations: [
-    trigger('submenu', [
-      state('closed', style({ height: '0', opacity: 0, overflow: 'hidden' })),
-      state('open', style({ height: '*', opacity: 1, overflow: 'hidden' })),
-      transition('closed <=> open', [animate('250ms ease-in-out')]),
-    ]),
-  ],
+  imports: [CommonModule, RouterOutlet, RouterLink, NgIcon, Header, Sidebar],
   viewProviders: [
     provideIcons({
       matHomeOutline,
@@ -38,39 +28,36 @@ import { SIDEBAR_ITEMS, SidebarItem } from './types/sidebar-items';
       matSettingsOutline,
       matExpandMoreOutline,
       matAdminPanelSettingsOutline,
-      matCategoryOutline
+      matCategoryOutline,
     }),
   ],
 })
 export class App {
-  @ViewChild('drawerRef') drawerRef!: Drawer;
-
   sidebarItems = SIDEBAR_ITEMS;
-  isSidebarOpen: boolean = true;
 
-  private openSubmenus = new Set<string>();
+  isSideExpanded = true;
+  isDrawerOpen = false;
+  isDesktop = true;
 
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen;
-  }
+  constructor(private bo: BreakpointObserver, @Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.bo.observe(['(min-width: 768px)']).subscribe(({ matches }) => {
+        this.isDesktop = matches;
 
-  closeSidebar(event?: Event) {
-    if (this.drawerRef) {
-      this.drawerRef.close(event || new MouseEvent('click'));
+        if (matches) {
+          this.isSideExpanded = true;
+        } else {
+          this.isDrawerOpen = false;
+        }
+      });
     }
-    this.isSidebarOpen = false;
   }
 
-  toggleSubmenu(item: SidebarItem) {
-    if (!item.label) return;
-    if (this.openSubmenus.has(item.label)) {
-      this.openSubmenus.delete(item.label);
+  onHeaderToggle() {
+    if (this.isDesktop) {
+      this.isSideExpanded = !this.isSideExpanded;
     } else {
-      this.openSubmenus.add(item.label);
+      this.isDrawerOpen = !this.isDrawerOpen;
     }
-  }
-
-  isSubmenuOpen(item: SidebarItem): boolean {
-    return this.openSubmenus.has(item.label);
   }
 }

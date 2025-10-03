@@ -1,121 +1,23 @@
-<div class="min-h-screen bg-gray-300/10 px-8 py-4 flex flex-col gap-8">
+<div class="min-h-screen bg-gray-300/10 px-4 sm:px-8 py-4 flex flex-col gap-6">
   <!-- Header -->
-  <app-header (sidebarToggle)="isSidebarOpen = !isSidebarOpen"></app-header>
+  <app-header (sidebarToggle)="onHeaderToggle()"></app-header>
 
-  <div class="flex flex-1 pb-0" [class.gap-8]="isSidebarOpen">
+  <div class="flex flex-1">
     <!-- Sidebar (desktop: side) -->
-    <div
-      class="hidden md:flex transition-all duration-300 bg-white rounded-xl shadow-lg flex-col h-[calc(100vh-6rem-2.5rem)] py-3 overflow-y-auto"
-      [class.w-72]="isSidebarOpen"
-      [class.w-0]="!isSidebarOpen"
+    <app-sidebar
+      class="hidden md:flex"
+      [items]="sidebarItems"
+      variant="side"
+      [(open)]="isSideExpanded"
     >
-      <nav class="flex-1 p-2">
-        <ul class="space-y-3">
-          <li *ngFor="let item of sidebarItems">
-            <div
-              class="menu flex flex-row items-center gap-2 !py-1.5 rounded hover:bg-gray-100 w-full cursor-pointer"
-              (click)="item.children ? toggleSubmenu(item) : null"
-              [routerLink]="!item.children ? item.routerLink : null"
-            >
-              <ng-icon [name]="item.icon" class="icon-size" />
-              <span>{{ item.label }}</span>
-              <ng-icon
-                *ngIf="item.children"
-                name="matExpandMoreOutline"
-                class="mr-auto transition-transform duration-200"
-                [class.rotate-180]="isSubmenuOpen(item)"
-              />
-            </div>
+    </app-sidebar>
 
-            <!-- Submenu -->
-            <ul
-              *ngIf="item.children"
-              [@submenu]="isSubmenuOpen(item) ? 'open' : 'closed'"
-              class="mr-10 mt-1 space-y-2 border-r border-gray-200 pr-2"
-            >
-              <li *ngFor="let child of item.children">
-                <a
-                  [routerLink]="child.routerLink"
-                  class="menu flex flex-row items-center gap-2 !py-1.5 rounded hover:bg-gray-100 w-full"
-                >
-                  {{ child.label }}
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <!-- Sidebar (mobile: drawer) -->
+    <app-sidebar class="md:hidden" [items]="sidebarItems" variant="drawer" [(open)]="isDrawerOpen">
+    </app-sidebar>
 
-    <!-- Sidebar (mobile: over) -->
-    <div
-      class="md:hidden fixed inset-0 z-50 transition-transform duration-300"
-      [class.translate-x-0]="isSidebarOpen"
-      [class.translate-x-full]="!isSidebarOpen"
-    >
-      <!-- Backdrop -->
-      <div class="absolute inset-0 bg-black/50" (click)="isSidebarOpen = false"></div>
-
-      <!-- Drawer -->
-      <div class="absolute right-0 top-0 bg-white w-64 h-full shadow-lg p-3 flex flex-col">
-        <nav class="flex-1 p-2">
-          <ul class="space-y-3">
-            <li *ngFor="let item of sidebarItems">
-              <!-- بدون زیرمنو -->
-              <a
-                *ngIf="!item.children"
-                [routerLink]="item.routerLink"
-                class="menu flex flex-row items-center !gap-2 p-0 rounded hover:bg-gray-100"
-                (click)="isSidebarOpen = false"
-              >
-                <ng-icon *ngIf="item.icon" [name]="item.icon" class="icon-size" />
-                {{ item.label }}
-              </a>
-
-              <!-- با زیرمنو -->
-              <div *ngIf="item.children" class="flex flex-col gap-1">
-                <button
-                  (click)="toggleSubmenu(item)"
-                  class="menu flex flex-row items-center justify-between gap-2 p-2 rounded hover:bg-gray-100 w-full"
-                >
-                  <div class="flex items-center gap-2">
-                    <ng-icon *ngIf="item.icon" [name]="item.icon" class="icon-size" />
-                    {{ item.label }}
-                  </div>
-                  <ng-icon
-                    name="matExpandMoreOutline"
-                    class="w-4 h-4 transition-transform"
-                    [class.rotate-180]="isSubmenuOpen(item)"
-                  />
-                </button>
-
-                <!-- Submenu -->
-                <ul
-                  *ngIf="item.children"
-                  [@submenu]="isSubmenuOpen(item) ? 'open' : 'closed'"
-                  class="mr-8 mt-1 space-y-2 border-r border-gray-200 pr-2"
-                >
-                  <li *ngFor="let child of item.children">
-                    <a
-                      [routerLink]="child.routerLink"
-                      class="menu flex flex-row items-center gap-2 p-2 rounded hover:bg-gray-100"
-                      (click)="isSidebarOpen = false"
-                    >
-                      {{ child.label }}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-
-    <!-- Main content -->
-    <main
-      class="flex-1 bg-white rounded-xl shadow-lg h-[calc(100vh-6rem-2.5rem)] p-5 overflow-y-auto"
-    >
+    <!-- Main -->
+    <main class="flex-1 bg-white rounded-xl shadow-lg p-6 overflow-y-auto ms-0 md:ms-4">
       <router-outlet></router-outlet>
     </main>
   </div>
