@@ -1,12 +1,26 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { FormsModule, NgForm } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { Card } from 'primeng/card';
+import { AddCategoryRequest } from '../../../models/add-category-request.model';
 
 @Component({
   selector: 'app-add-category',
-  imports: [RouterLink, Card, ButtonModule],
+  imports: [Card, ButtonModule, FormsModule],
   templateUrl: './add-category.html',
   styleUrl: './add-category.scss',
 })
-export class AddCategory {}
+export class AddCategory {
+  model: AddCategoryRequest;
+
+  constructor() {
+    this.model = {
+      name: '',
+      urlHandle: '',
+    };
+  }
+
+  onFormSubmit() {
+    console.log(this.model);
+  }
+}

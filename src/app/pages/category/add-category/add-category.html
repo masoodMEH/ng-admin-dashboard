@@ -6,7 +6,11 @@
   </ng-template>
 
   <ng-template pTemplate="content">
-    <form class="bg-white py-4 px-2 rounded-xl w-full max-w-full space-y-6">
+    <form
+      #form="ngForm"
+      (ngSubmit)="onFormSubmit()"
+      class="bg-white py-4 px-2 rounded-xl w-full max-w-full space-y-6"
+    >
       <div>
         <label for="name" class="block text-sm font-medium text-gray-700">نام دسته بندی</label>
         <input
@@ -15,6 +19,7 @@
           name="name"
           placeholder="نام خود را وارد کنید"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          [(ngModel)]="model.name"
         />
       </div>
 
@@ -26,6 +31,7 @@
           name="UrlHandle"
           placeholder="نوع دسته بندی"
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          [(ngModel)]="model.urlHandle"
         />
       </div>
 
