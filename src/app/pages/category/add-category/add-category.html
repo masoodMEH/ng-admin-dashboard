@@ -50,7 +50,11 @@
           [(ngModel)]="model.urlHandle"
           required
         />
-        <small class="text-xs text-gray-400">می‌توانید خالی بگذارید—بعداً قابل ویرایش است.</small>
+        <small
+          *ngIf="nameModel.invalid && (nameModel.dirty || nameModel.touched)"
+          class="text-xs text-red-500"
+          >فیلد الزامی است.</small
+        >
       </div>
 
       <!-- دکمه‌ها -->
